@@ -1,0 +1,235 @@
+/* STRUCTURE */
+.container{
+    margin: 0 auto;
+    width: 80%;
+    margin-bottom: 5rem;
+}
+
+.anchorHome{
+    padding-top: 17rem;
+}
+
+.anchorOther{
+    padding-top: 5rem;
+}
+
+/* TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6, figcaption {
+    font-family: 'Open Sans', sans-serif;
+}
+
+p, td, li, button, a {
+    font-family: 'Open Sans', sans-serif;
+}
+
+p, li{
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: rgb(116, 116, 116);
+    line-height: 1.8rem;
+}
+
+h2{
+    font-size: 2.5rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:active{
+    color: black
+}
+
+a:visited{
+    color: black;
+}
+
+a:hover{
+    color: rgb(85, 187, 255);
+}
+
+/* NAV */
+.nav{
+    position:sticky;
+    top: 0px;
+    background-color: white;
+    text-align: center;
+}
+
+button{
+    -moz-transition: all .15s ease-in;
+    -o-transition: all .15s ease-in;
+    -webkit-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+    margin: 0.5rem 0.2rem;
+    border: none;
+    background-color: white;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+}
+
+/* HOME */
+#home{
+    margin-bottom: 18rem;
+    width: 70%;
+}
+#home p{
+    margin: 0;
+}
+
+.name{ 
+    font-size: 3.5rem;
+    margin: 0.3rem 0;
+}
+
+/* ABOUT */
+#about{
+    display: flex;
+    max-height: 35%;
+}
+
+.twoSections{
+    flex: 1;
+    width: 50%;
+    margin: 0 1rem;
+    display: inline-block;
+}
+
+img {
+    align-self: center;
+    float: right;
+    width: 90%;
+    display: block;
+    max-height: 100%;
+    border-radius: 30px;
+}
+
+/* STRENGTHS */
+#strengths span{
+    font-weight: 400;
+    color: rgb(28, 28, 28);
+    text-decoration: underline;
+}
+
+li{
+    margin-top: 0.5rem;
+}
+
+/* EXPERIENCE */
+#experience h3{
+    font-size: 1.6rem;
+}
+.box{
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    border-radius: 30px;
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* CONTACT */
+#contact{
+    margin-top: 4rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgb(185, 185, 185);
+    text-align: center;
+}
+
+#contact a{
+    font-size: 1.3rem;
+    font-weight: 100;
+
+}
+
+#contact a:visited{
+    color: rgb(1, 118, 196);
+}
+
+#contact a:hover{
+    color: rgb(85, 187, 255);
+}
+
+/* BREAKPOINTS */
+
+@media only screen and (max-width: 595px) {
+    #about{
+        display: block;
+        
+    }
+
+    #about p{
+        line-height: 1.8rem;
+        font-size: 1.3rem;
+    }
+
+    #about .twoSections{
+        display: block;
+        width: 100%;
+    }
+}
+ 
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 600px) {
+
+    #about{
+        display: block;
+        
+    }
+
+    #about p{
+        line-height: 1.8rem;
+        font-size: 1.3rem;
+    }
+
+    #about .twoSections{
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
+
+    img{
+        margin: 0 auto;
+    }
+    
+}
+ 
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+    #about{
+        display: flex;
+        
+    }
+    
+    #about p{
+        line-height: 1.3rem;
+        font-size: 1.1rem;
+    }
+
+    #about .twoSections{
+        display: inline-block;
+        width: 50%
+    }
+}
+ 
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {
+    #about p{
+        line-height: 1.3rem;
+        font-size: 1.1rem;
+    }
+}
+ 
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+    #about p{
+        line-height: 1.8rem;
+        font-size: 1.3rem;
+    }
+
+}
