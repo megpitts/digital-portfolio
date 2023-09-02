@@ -45,6 +45,10 @@ a:visited{
     color: black;
 }
 
+a:-webkit-any-link{
+    color: black;
+}
+
 a:hover{
     color: rgb(85, 187, 255);
 }
