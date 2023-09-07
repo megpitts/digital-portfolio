@@ -62,6 +62,7 @@ a:hover{
 }
 
 button{
+    color: black;
     -moz-transition: all .15s ease-in;
     -o-transition: all .15s ease-in;
     -webkit-transition: all .15s ease-in;
