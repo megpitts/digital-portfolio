@@ -67,7 +67,6 @@ a:hover{
 }
 
 button{
-   
     -moz-transition: all .15s ease-in;
     -o-transition: all .15s ease-in;
     -webkit-transition: all .15s ease-in;
@@ -180,19 +179,6 @@ li{
     #about .twoSections{
         display: block;
         width: 100%;
-    }
-
-    button{
-        color: black !important;
-        -moz-transition: all .15s ease-in;
-        -o-transition: all .15s ease-in;
-        -webkit-transition: all .15s ease-in;
-        transition: all .15s ease-in;
-        background-color: white;
-    }
-
-    .nav a:hover{
-        color: white !important;
     }
 }
  
