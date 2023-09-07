@@ -47,7 +47,7 @@ a:visited{
 }
 
 a:-webkit-any-link{
-    color: black;
+    color: black !important
 }
 
 a:hover{
@@ -181,6 +181,10 @@ li{
         display: block;
         width: 100%;
     }
+
+    button{
+        color: black !important
+    }
 }
  
 /* Small screen devices (600px and above) */
@@ -231,9 +235,6 @@ li{
     #about p{
         line-height: 1.3rem;
         font-size: 1.1rem;
-    }
-    button{
-        color: black !important
     }
 }
  
