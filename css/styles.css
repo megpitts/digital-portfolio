@@ -24,7 +24,7 @@ p, td, li, button, a {
 
 p, li{
     font-size: 1.3rem;
-    font-weight: 100;
+    font-weight: 300;
     color: rgb(116, 116, 116);
     line-height: 1.8rem;
 }
@@ -34,12 +34,11 @@ h2{
 }
 
 a{
-    text-decoration: none;
-    color: black
+    color: black;
 }
 
 a:active{
-    color: black
+    color: black;
 }
 
 a:visited{
@@ -47,7 +46,7 @@ a:visited{
 }
 
 a:-webkit-any-link{
-    color: black
+    color: black;
 }
 
 a:hover{
@@ -140,6 +139,22 @@ li{
     margin-top: 1rem;
     border-radius: 30px;
     box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+#code{
+    display: flex;
+    max-height: 35%;
+    margin-top: 100px;
+}
+.codeContainer{
+    height: 250px;
+    background-color: rgba(0, 0, 0, 0.154);
+    font-family: monospace;
+    overflow: auto;
+    font-size: 0.9em;
+    padding: 1em;
+}
+code{
+    display: block;
 }
 
 /* CONTACT */

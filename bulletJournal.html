@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bullet Journal App</title>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="nav" style="text-align: left;">
+            <a href="index.html"><button style="border: 1px solid black;">Back to Home</button></a>
+        </div>
+        <h1 class="name">Bullet Journal App</h1>
+
+        <div id="code">
+            <div class="twoSections">
+                <h2>A Glimpse at the Model Code</h2>
+                <p style="font-style: italic;">This code served as our model that handled all the logic and data in the app.</p>
+                <div class="codeContainer">
+                    <pre>
+import UIKit
+import Foundation
+import EventKit
+
+class JournalEntriesModel{
+    
+    var entries: [Entry] = []
+    var photos: [UIImage] = []
+    var reminders: [String] = []
+    
+    init(){
+        
+    }
+    
+    func addEntry(e: Entry) -> Void{
+        
+        //save to all our entries
+        self.entries.append(e)
+        
+        //persistent storage for an entry excluding photos
+        do {
+            let fm = FileManager.default
+            let docsurl = try fm.url(for:.documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            print("serializing entries using property list encoder")
+            //encode the entries
+            let test = e
+            let testData = try PropertyListEncoder().encode(test)
+            let testFile = docsurl.appendingPathComponent("test.txt")
+            
+            //write the entries to our file
+            print("writing serialized friend to file")
+            try testData.write(to: testFile, options: .atomic)
+            
+            let bulletJournalPlist = self.entries
+            print("printing entries: ")
+            print(bulletJournalPlist)
+            let arrfile2 = docsurl.appendingPathComponent("BulletJournalPlist.plist")
+            let plister = PropertyListEncoder()
+            plister.outputFormat = .xml // just so we can read it
+            print("attempting successfully to write an array by encoding to plist first")
+            try plister.encode(bulletJournalPlist).write(to: arrfile2, options: .atomic)
+            let s = try String.init(contentsOf: arrfile2)
+            print(s) // show it as XML
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    func addToPhotos(photo: UIImage){
+        //called when photos are being saved and added to persistent storage
+        
+        //making a random name for the file
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime]
+        let dateString = formatter.string(from: Date())
+        let fileName = "photo-\(dateString).jpg"
+        
+        // saving in documents on the app
+        if let data = photo.jpegData(compressionQuality: 1.0),
+            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(fileName) {
+            do {
+                try data.write(to: url)
+            } catch {
+                print("Error: \(error)")
+            }
+            
+            //save the photo to our model storage
+            self.photos.insert(photo, at: 0)
+        }
+    }
+    
+    func addToReminders(reminder: EKReminder?) -> Void{
+        self.reminders.append(reminder!.title)
+    }
+    
+    func getReminders() -> [String]{
+        return self.reminders
+    }
+    
+    func getPhotos() -> [UIImage]{
+        return self.photos
+    }
+    
+    func getJournalEntries() -> [Entry]{
+        return self.entries
+    }
+    
+    //this relates to persistent storage and how the appdelegate reads it all in
+    func readToModel(entryData: [Entry]){
+        self.entries = entryData
+    }
+    
+    //reads photos to model once app loads
+    func readToPhotos(photo: UIImage) {
+        self.photos.insert(photo, at: 0)
+    }
+}
+    
+    class Entry: NSObject, Codable{
+        var mood: String
+        var notes: String
+        var recipe: String
+        var date = Date()
+        
+        override var description : String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "YY/MM/dd"
+            return "Entry from " + dateFormatter.string(from: self.date) + "\n"
+        }
+        
+        init(m: String, n: String, r: String, d: Date){
+            self.mood = m
+            self.notes = n
+            self.recipe = r
+            self.date = d
+        }
+        
+        func getMood() -> String{
+            return self.mood
+        }
+        
+        func getNotes() -> String{
+            return self.notes
+        }
+        
+        func getRecipe() -> String{
+            return self.recipe
+        }
+        
+        func getDate() -> Date{
+            return self.date
+        }
+        
+    }
+                    </pre>
+                </div>
+                
+                
+            </div>
+            <div class="twoSections" style="display: flex;">
+                <img src="images/UI1.png" alt="A basic mobile app design.">
+            </div>
+        </div>
+
+        
+        <div id="code">
+            <div class="twoSections">
+                <h2>Our Controllers</h2>
+                <p style="font-style: italic;">This code served as the controller for our home screen.</p>
+                <div class="codeContainer">
+                    <pre>
+import UIKit
+import SwiftUI
+import EventKit
+
+
+class HomeViewController: UIViewController, UITextViewDelegate{
+    
+    //the model
+    var theAppDelegate: AppDelegate?
+    var journal: JournalEntriesModel = JournalEntriesModel()
+
+    //our labels
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var moodLabel: UILabel!
+    @IBOutlet weak var recipeLabel: UILabel!
+    @IBOutlet weak var remindersTextView: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //the model
+        self.theAppDelegate = UIApplication.shared.delegate as? AppDelegate
+        if let journalModel = self.theAppDelegate?.theModel {
+            self.journal = journalModel
+        } else {
+            print("Home Model Fail")
+        }
+        
+        //check if data from the appdelegate has been updated
+        //if it has, call the function below and update the reminders box
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .EditingReminders, object: nil)
+    
+    }
+    
+    @objc func reloadData(){
+        /*reload the data we show to the user here*/
+        //print("Reloading User Data")
+        //-----------reminder setup-----------------
+        let reminders = self.journal.getReminders()
+        var reminderText = ""
+        for item in reminders{
+            reminderText = reminderText + "-" +  item + "\n"
+        }
+        DispatchQueue.main.async {
+            self.remindersTextView.text = reminderText
+        }
+        
+    }
+    
+    //turn off the notication from the AppDelegate, so it isn't constantly running
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //updating the date label to the current, formatted date
+        self.dateLabel.text = Date().formatted(date: .abbreviated, time: .omitted)
+        
+        //set up previous mood and recipe recommendation
+        let journal = self.journal.getJournalEntries()
+        let jSize = journal.count
+        
+        //-----------mood setup-----------------
+        //if there are any entries in the journal
+        if(jSize > 0){
+            //if we have at least two entries...
+            if(jSize > 1){
+                //and the last entry is from today
+                if(Calendar.current.isDateInToday(journal[jSize - 1].getDate())){
+                    //set the mood to be the second to last entry
+                    self.moodLabel.text = journal[jSize - 2].getMood()
+                }else{//if the last entry is from yesterday
+                    //set the mood to be the last entry
+                    self.moodLabel.text = journal[jSize - 1].getMood()
+                }
+            }
+            //if there's only one entry and its from yesterday...
+            if(jSize == 1){
+                if(Calendar.current.isDateInYesterday(journal[0].getDate())){
+                    //set the mood to be from the one entry
+                    self.moodLabel.text = journal[0].getMood()
+                }else{ //else the one entry is from today or a day that was further back than yesterday
+                    self.moodLabel.text = "Your mood for the previous day will be here."
+                }
+            }
+        }else{
+            //if there are zero entries
+            self.moodLabel.text = "Your mood for the previous day will be here."
+        }
+        
+        //if someone didn't enter a mood with their entry...
+        if self.moodLabel.text == ""{
+            self.moodLabel.text = "Your mood for the previous day will be here"
+        }
+    }    
+}
+                    </pre>
+                </div>
+                
+                
+            </div>
+            <div class="twoSections" style="display: flex;">
+                <img src="images/UI2.png" alt="A basic mobile app design.">
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
