@@ -1,260 +1,464 @@
-/* STRUCTURE */
-.container{
-    margin: 0 auto;
-    width: 80%;
-    margin-bottom: 5rem;
-}
-
-.anchorHome{
-    padding-top: 17rem;
-}
-
-.anchorOther{
-    padding-top: 5rem;
+/* COLOR VARIABLES */
+:root {
+    --professional-blue: #5D769A;
+    --background: #F1F0EB;
 }
 
 /* TYPOGRAPHY */
-h1, h2, h3, h4, h5, h6, figcaption {
-    font-family: 'Open Sans', sans-serif;
+h1 {
+    font-family: "DM Serif Display", serif;
 }
 
-p, td, li, button, a {
-    font-family: 'Open Sans', sans-serif;
+h2,
+p,
+td,
+li,
+button,
+a {
+    font-family: "DM Sans", sans-serif;
 }
 
-p, li{
-    font-size: 1.3rem;
-    font-weight: 300;
-    color: rgb(116, 116, 116);
-    line-height: 1.8rem;
+/* STRUCTURE */
+body {
+    background-color: var(--background) !important;
+    padding: 1em 3em;
 }
 
-h2{
-    font-size: 2.5rem;
+div,
+p {
+    line-height: 1.6em;
 }
 
-a{
-    text-decoration: underline;
-    color: black;
+
+.btn {
+    border: 1px solid black !important;
+    padding: 0.5em 2em !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 }
 
-a:active{
-    color: black;
+#home .btn {
+    width: 100px;
 }
 
-a:visited{
-    color: black;
+.btn .material-symbols-outlined {
+    font-size: 35px !important;
 }
 
-a:-webkit-any-link{
-    color: black;
-}
+.btn:hover {
+    border: none !important;
+    background-color: var(--professional-blue) !important;
 
-a:hover{
-    color: rgb(85, 187, 255);
+    .material-symbols-outlined {
+        color: white !important;
+    }
 }
 
 /* NAV */
-.nav{
-    position:sticky;
-    top: 0px;
-    background-color: white;
-    text-align: center;
+nav {
+    background-color: var(--background);
 }
 
-.nav a:hover{
-    color: white;
+nav a {
+    font-family: "DM Serif Display", serif;
+    font-size: 25px !important;
+    padding: 0 0.5em !important;
 }
 
-button{
-    -moz-transition: all .15s ease-in;
-    -o-transition: all .15s ease-in;
-    -webkit-transition: all .15s ease-in;
-    transition: all .15s ease-in;
-    margin: 0.5rem 0.2rem;
-    border: none;
-    background-color: white;
-    padding: 0.7rem 1rem;
-    border-radius: 8px;
-    font-weight: 600;
+.active,
+nav a:hover {
+    color: var(--professional-blue) !important;
 }
 
-button:hover{
-    color: white;
-    background-color: black;
+.navbar-nav {
+    gap: 0.5em !important;
+    align-items: center !important;
 }
 
 /* HOME */
-#home{
-    margin-bottom: 18rem;
-    width: 70%;
-}
-#home p{
-    margin: 0;
-}
-
-.name{ 
-    font-size: 3.5rem;
-    margin: 0.3rem 0;
-}
-
-/* ABOUT */
-#about{
-    display: flex;
-    max-height: 35%;
-}
-
-.twoSections{
-    flex: 1;
-    width: 50%;
-    margin: 0 1rem;
-    display: inline-block;
-}
-
-img {
-    align-self: center;
-    float: right;
-    width: 90%;
-    display: block;
-    max-height: 100%;
-    border-radius: 30px;
-}
-
-/* STRENGTHS */
-#strengths span{
-    font-weight: 400;
-    color: rgb(28, 28, 28);
-    text-decoration: underline;
-}
-
-li{
-    margin-top: 0.5rem;
-}
-
-/* EXPERIENCE */
-#experience h3{
-    font-size: 1.6rem;
-}
-.box{
-    padding: 1rem 2rem;
-    margin-top: 1rem;
-    border-radius: 30px;
-    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
-}
-#code{
-    display: flex;
-    max-height: 35%;
-    margin-top: 100px;
-}
-.codeContainer{
-    height: 250px;
-    background-color: rgba(0, 0, 0, 0.154);
-    font-family: monospace;
-    overflow: auto;
-    font-size: 0.9em;
-    padding: 1em;
-}
-code{
-    display: flex;
-}
-
-/* CONTACT */
-#contact{
-    margin-top: 4rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgb(185, 185, 185);
+#home header {
+    margin: 9em auto 10.5em;
     text-align: center;
 }
 
-#contact a{
-    font-size: 1.3rem;
-    font-weight: 100;
-
+#home header h2 {
+    font-size: 20px;
 }
 
-#contact a:visited{
-    color: rgb(1, 118, 196);
+#home header h1 {
+    font-size: 80px;
 }
 
-#contact a:hover{
-    color: rgb(85, 187, 255);
+#home header p {
+    font-size: 20px;
+    margin: 2.5em 0;
 }
 
-/* BREAKPOINTS */
+@media (min-width: 510px) {
+    #home header {
+        width: 73%;
+    }
 
-@media only screen and (max-width: 595px) {
-    #about{
+    #home header h2 {
+        font-size: 20px;
+    }
+
+    #home header h1 {
+        font-size: 100px;
+    }
+}
+
+/* HOME: About Me */
+#home article {
+    padding: 1em 0;
+    margin: 0 1em;
+    display: block;
+}
+
+#home article h2 {
+    font-family: "DM Serif Display", serif;
+}
+
+#home article img {
+    width: 70%;
+    display: block;
+    margin: 0 auto 2em;
+}
+
+#home .tag {
+    font-style: italic;
+    padding: 1em 0;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    text-align: center;
+    font-weight: bold;
+}
+
+#home article div {
+    /* padding: 0 3em; */
+    width: 100%;
+}
+
+@media (min-width: 835px) {
+    #home article {
+        padding: 1em 4em;
+        margin: 0 4em;
         display: block;
-        
-    }
-
-    #about p{
-        line-height: 1.8rem;
-        font-size: 1.3rem;
-    }
-
-    #about .twoSections{
-        display: block;
-        width: 100%;
     }
 }
- 
-/* Small screen devices (600px and above) */
-@media only screen and (min-width: 600px) {
 
-    #about{
-        display: block;
-        
-    }
-
-    #about p{
-        line-height: 1.8rem;
-        font-size: 1.3rem;
-    }
-
-    #about .twoSections{
-        display: block;
-        width: 100%;
-        margin: 0;
-    }
-
-    img{
-        margin: 0 auto;
-    }
-    
-}
- 
-/* Medium screen devices (768px and above) */
-@media only screen and (min-width: 768px) {
-    #about{
+@media (min-width: 1090px) {
+    #home article {
+        margin-top: 2em;
         display: flex;
-        
-    }
-    
-    #about p{
-        line-height: 1.3rem;
-        font-size: 1.1rem;
+        gap: 2em;
+        align-items: center;
     }
 
-    #about .twoSections{
-        display: inline-block;
-        width: 50%
-    }
-}
- 
-/* Big screen devices (889px and above) */
-@media only screen and (min-width: 889px) {
-    #about p{
-        line-height: 1.3rem;
-        font-size: 1.1rem;
-    }
-}
- 
-/* Extra big screen devices (1200px and above) */
-@media only screen and (min-width: 1200px) {
-    #about p{
-        line-height: 1.8rem;
-        font-size: 1.3rem;
+    #home article img {
+        width: 40%;
     }
 
+    #home article div {
+        width: 60%;
+    }
+}
+
+/* EXPERIENCE */
+#experience header {
+    margin: 2em auto;
+    text-align: center;
+}
+
+#experience header h1 {
+    font-size: 47px;
+}
+
+#experience {
+    padding: 1em;
+}
+
+@media (min-width: 510px) {
+
+    #experience header h1 {
+        font-size: 100px;
+    }
+}
+
+#experience .btn {
+    width: 200px;
+}
+
+#experience .container {
+    padding: 1em 0;
+    margin: 0 auto;
+}
+
+@media (min-width: 576px) {
+    #experience .container {
+        padding: 1em 3em;
+    }
+}
+
+#experience .container h2 {
+    margin-bottom: 0;
+}
+
+#experience .container h3 {
+    margin-top: 10px;
+}
+
+.exp-card {
+    border-left: 5px solid black;
+    margin: 3em 0;
+    padding: 0 2em;
+}
+
+.exp-card h2 {
+    font-family: "DM Serif Display", serif;
+}
+
+.exp-tag {
+    font-style: italic;
+    border-bottom: 1px solid black;
+}
+
+/* PROJECTS */
+#projects header,
+#project-details header,
+#fun-facts header {
+    margin: 2em auto;
+    text-align: center;
+}
+
+#projects header h1,
+#project-details header h1,
+#fun-facts header h1 {
+    font-size: 47px;
+}
+
+@media (min-width: 510px) {
+
+    #projects header h1,
+    #project-details header h1,
+    #fun-facts header h1 {
+        font-size: 100px;
+    }
+}
+
+#projects .container {
+    padding: 0 !important;
+    margin: 0 auto;
+}
+
+#projects .container a {
+    text-decoration: none;
+    color: black;
+}
+
+.project-card {
+    background-color: #cfd4db;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 1em auto;
+    border-radius: 4px;
+    width: 100%;
+    padding: 1em;
+}
+
+.project-card h2 {
+    font-family: "DM Serif Display", serif;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    #projects .container {
+        padding: 0 4em;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        gap: 2em;
+    }
+
+    .project-card {
+        width: 450px;
+    }
+}
+
+.project-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* PROJECT DETAILS */
+#project-details .project-info {
+    padding: 1em 0;
+    margin: 0 auto;
+}
+
+@media (min-width: 576px) {
+    #project-details .project-info {
+        padding: 1em 3em;
+    }
+}
+
+.details-tag {
+    font-weight: bold;
+}
+
+figure {
+    width: 95%;
+    margin: 1em auto !important;
+    text-align: center;
+    font-size: 1em;
+}
+
+figure img {
+    width: 90%;
+}
+
+@media (min-width: 576px) {
+    figure {
+        width: 80%;
+        margin: 3em auto !important;
+        text-align: center;
+        font-size: 1em;
+    }
+}
+
+.bloom-link {
+    width: 250px;
+}
+
+.bloom .btn {
+    margin: 0 0 !important;
+    width: 250px;
+    margin-bottom: 1em !important;
+}
+
+/* FUN FACTS */
+#fun-facts .container {
+    padding: 1em 0 !important;
+}
+
+.fact {
+    border-bottom: 1px solid black;
+    padding: 0.5em 0 0;
+}
+
+@media (min-width: 576px) {
+    .fact {
+        margin: 0 4em;
+        border-bottom: 1px solid black;
+    }
+}
+
+.fact img {
+    display: block;
+    margin: 2em auto;
+    width: 70%;
+}
+
+.fact-flex {
+    display: block;
+}
+
+.last-fact {
+    border-bottom: none;
+}
+
+
+@media (min-width: 1300px) {
+    .fact-flex {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .fact-flex .fact-text {
+        width: 50%;
+    }
+
+    .fact img {
+        width: 500px;
+    }
+}
+
+
+/* FOOTER */
+footer {
+    margin: 1em 0 0;
+    padding: 3em 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer ul {
+    list-style-type: none;
+    margin-bottom: 0;
+}
+
+footer h3 {
+    font-family: "DM Serif Display", serif;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+footer ul {
+    margin-right: 0;
+    text-align: center;
+    padding-left: 0 !important;
+}
+
+footer ul li {
+    font-family: "DM Serif Display", serif;
+    margin-bottom: 0.5em;
+}
+
+footer a {
+    text-decoration: none;
+    color: black;
+}
+
+footer a:hover {
+    color: var(--professional-blue);
+}
+
+.bi {
+    margin: 1em 0.5em 0;
+}
+
+.bi-github {
+    margin-right: 0;
+}
+
+.contact {
+    text-align: center;
+    margin-top: 1em;
+}
+
+@media (min-width: 576px) {
+    footer {
+        margin: 1em 4em 0;
+        padding: 3em 0;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    footer ul {
+        margin-right: 0;
+        text-align: left;
+    }
+
+    .contact {
+        text-align: end;
+    }
+}
+
+.contact .email {
+    margin-top: 0.5em;
+    display: block;
 }
